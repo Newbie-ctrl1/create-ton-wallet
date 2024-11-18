@@ -24,7 +24,7 @@ Before running the script, ensure you have the necessary dependencies installed:
 2. Run the script using Python.
  ### Example:
  ``` bash
-  python async_wallet_generator.py
+  python wallet.py
  ```
 3. Input the number of wallets you want to generate when prompted.
 4. The script will generate the wallets and save the results in `address.txt` and `key.txt`.
