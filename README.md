@@ -1,78 +1,76 @@
-# Wallet Generator - TON SDK
-
-A Python script to generate multiple wallets for the TON blockchain using the `tonsdk` library.
+# Async TON Wallet Generator
+This Python script generates multiple TON (The Open Network) wallets asynchronously. It uses the tonsdk library for wallet creation and outputs wallet addresses and mnemonic phrases into two separate files: `address.txt` and `key.txt`.
 
 ## Features
-- Create wallets for the TON blockchain using the v3r2 wallet version.
-- Save wallet addresses and mnemonics to a `key.txt` file.
-- Option to send wallet data to a server endpoint via HTTP POST request (using `requests`).
+
+- **Asynchronous Wallet Generation**: Utilizes asynchronous programming for efficient wallet generation.
+- **TON Wallet Version v4R2**: Creates wallets using the v4r2 wallet version.
+- **Address Formatting**: Wallet addresses are formatted by replacing `+` with `_` and `/` with `-`.
+- **Output to Files**: The generated wallet addresses are stored in `address.txt` and the corresponding mnemonics and addresses are saved in `key.txt`.
 
 ## Requirements
 
-- Python 3.x
-- `tonsdk` library
-- `requests` library
+Before running the script, ensure you have the necessary dependencies installed:
 
-## Installation
-
- 1. Clone the repository or download the script.
-  ```bash
-  git clone https://github.com/your-repo/wallet-generator.git
-  cd wallet-generator
-  ```
- 2. Install the required dependencies.
-  ```bash
-  pip install tonsdk requests
-  ```
+## Prerequisites
+- **Python 3.7+**
+- **Install the required libraries by running**:
+ ```bash
+ pip install tonsdk aiofile pandas
+ ```
 ## Usage
- 1. Run the script:
 
-  ```bash
-  python wallet_generator.py
-  ```
- 2. Input the number of wallets you want to create.
- 3. The generated wallets' mnemonics and addresses will be saved in a file called key.txt.
- 4. If you have a server or API endpoint that accepts wallet data, you can modify the script to send the wallet information using requests by updating the send_to_server function with your endpoint.
+1. Clone this repository or copy the script to your local environment.
+2. Run the script using Python.
+ ### Example:
+ ``` bash
+  python async_wallet_generator.py
+ ```
+3. Input the number of wallets you want to generate when prompted.
+4. The script will generate the wallets and save the results in `address.txt` and `key.txt`.
 
-## Example of Output
+## Output Files
 
-The key.txt file will contain the wallet data in the following format:
+`address.txt`: Contains the generated wallet addresses.
+`key.txt`: Contains the wallet addresses and their corresponding mnemonic phrases.
 
-  ```yaml
-  Wallet 1:
-  Address: EQC...
-  Mnemonics: word1 word2 word3 ... word24
-  
-  Wallet 2:
-  Address: EQC...
-  Mnemonics: word1 word2 word3 ... word24
-  ```
+## Sample Output
+- **address.txt**:
+ ```
+ kQDBwl4YkUzZjHSpP1k5KUpRvw2jj1PQtfHPu08eCvnqopMl
+ kQBQF4xGnWZmKnUdr9ESkY_StUVvjCE63a4H3VFsioquOsPi
+ ```
+- **key.txt**:
 
-## Sending Wallet Data to a Server
+ ```yaml
+ Wallet 1: kQDBwl4YkUzZjHSpP1k5KUpRvw2jj1PQtfHPu08eCvnqopMl
+ Mnemonic: word1 word2 word3 ... word24
 
-If you want to send the generated wallet data to a remote server, make sure to include your server's endpoint in the send_to_server function inside the script.
+ Wallet 2: kQBQF4xGnWZmKnUdr9ESkY_StUVvjCE63a4H3VFsioquOsPi
+ Mnemonic: word1 word2 word3 ... word24
+ ```
 
- ## Example:
+## Example Usage
 
-```python
-  def send_to_server(wallet_data):
-      url = "https://your-api-endpoint.com/wallets"
-      response = requests.post(url, json=wallet_data)
-      if response.status_code == 200:
-          print("Data sent successfully!")
-      else:
-          print("Failed to send data. Status code:", response.status_code)
-  ```
+When you run the script, you'll be asked to input the number of wallets you'd like to generate. After providing the number, the script will generate the specified number of wallets asynchronously and save the addresses and mnemonics to the respective files.
+
+ ```yaml
+ Masukkan jumlah dompet yang ingin dibuat: 2
+ Generating 2 wallets...
+ Wallets generated successfully!
+ ```
+## Error Handling
+Invalid Input: If you input something other than a number, the script will prompt an error message:
+
+ ```
+Input tidak valid. Harap masukkan angka yang benar.
+ ```
+General Exceptions: Any other errors will be captured and displayed with the corresponding error message.
+ 
+## Contribution
+Feel free to fork the repository and submit pull requests for any improvements or additional features.
+
 ## License
 This project is licensed under the MIT License.
 
-## Explanation
--**Requirements**: Explains the necessary libraries and how to install them.
-
--**Usage**: Describes how to run the script and what the expected output is.
-
--**Example Usage**: Provides a demonstration of how the script interacts.
-
--**Contribution and License**: Standard sections for an open-source project.
-
-You can modify the server URL section in the script and explain how it works according to the API or server you intend to use.
+ 
